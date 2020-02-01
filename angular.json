@@ -24,18 +24,18 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.css",
                             "src/assets/css/nivo-lightbox.css",
-                            "node_modules/wowjs/css/libs/animate.css",
+                            "node_modules/animate.css/animate.css",
                             "src/assets/css/slicknav.css",
                             "node_modules/font-awesome/css/font-awesome.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "node_modules/simple-line-icons/css/simple-line-icons.css"
+                            "node_modules/simple-line-icons/css/simple-line-icons.css",
+                            "src/styles.css"
                         ],
                         "scripts": [
-                            "node_modules/wowjs/dist/wow.min.js",
-                            "src/assets/js/jquery-min.js",
-                            "src/assets/js/popper.min.js",
+                            "node_modules/wowjs/dist/wow.js",
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/popper.js/dist/umd/popper.min.js",
                             "src/assets/js/bootstrap.min.js",
                             "src/assets/js/jquery.mixitup.js",
                             "src/assets/js/jquery.counterup.min.js",
@@ -44,10 +44,7 @@
                             "src/assets/js/jquery.easing.min.js",
                             "src/assets/js/nivo-lightbox.js",
                             "src/assets/js/jquery.slicknav.js",
-                            "src/assets/js/main.js",
-                            "src/assets/js/form-validator.min.js",
-                            "src/assets/js/contact-form-script.min.js",
-                            "src/assets/js/map.js"
+                            "src/assets/js/main.js"
                         ]
                     },
                     "configurations": {

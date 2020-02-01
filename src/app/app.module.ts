@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NgwWowModule } from 'ngx-wow';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -43,10 +45,12 @@ const appRoutes: Routes = [
     NavigationComponent
   ],
   imports: [
+    AngularFontAwesomeModule,
+    NgwWowModule,
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   providers: [],
