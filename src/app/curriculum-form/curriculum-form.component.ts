@@ -28,7 +28,6 @@ export class CurriculumFormComponent implements OnInit {
     this.curriculumForm = this.formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      homeTitre: ['', Validators.required],
       aboutTitre: ['', Validators.required],
       aboutDesc: ['', Validators.required],
       age: ['', Validators.required],
@@ -45,7 +44,6 @@ export class CurriculumFormComponent implements OnInit {
     //home
     const nom = this.curriculumForm.get('nom').value;
     const prenom = this.curriculumForm.get('prenom').value;
-    const homeTitre = this.curriculumForm.get('homeTitre').value;
     //info perso
     const infoPersoTitre = this.curriculumForm.get('aboutTitre').value;
     const infoPersoDesc = this.curriculumForm.get('aboutDesc').value;
@@ -58,7 +56,7 @@ export class CurriculumFormComponent implements OnInit {
     const infoPersoExp = this.curriculumForm.get('experience').value;
 
     const newInfoPerso = new InfoPerso(infoPersoTitre, infoPersoDesc, nom, prenom, infoPersoExp, age, pays, ville, email, tel, freelance);
-    const newCurriculum = new Curriculum(nom, prenom, homeTitre, newInfoPerso);
+    const newCurriculum = new Curriculum(newInfoPerso);
     
     this.curriculumService.createCurriculum(newCurriculum);
     this.router.navigate(['/home']);

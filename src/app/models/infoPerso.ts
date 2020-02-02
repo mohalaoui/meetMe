@@ -10,7 +10,7 @@ export class InfoPerso {
                 public ville: string,
                 public email: string,
                 public tel: string,
-                public freelance: string
+                public freelance: boolean
 
                 ) {
     }
