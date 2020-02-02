@@ -1,0 +1,157 @@
+<section id="contact" class="section-padding">
+    <div class="contact-form">
+        <div class="container">
+            <div class="row contact-form-area wow fadeInUp" data-wow-delay="0.4s">
+                <form id="contactForm" [formGroup]="curriculumForm" (ngSubmit)="onSaveCurriculum()">
+                    <div class=" row ">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="contact-block">
+                                <h2>home</h2>
+                                <div class=" row ">
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " class="form-control " id="nom " name="nom " placeholder="Nom " formControlName="nom" required data-error="Please enter your last name ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Prenom " id="prenom " class="form-control " name="prenom " formControlName="prenom" required data-error="Please enter your first name ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Titre " id="homeTitre " class="form-control " formControlName="homeTitre" required data-error="Please enter the title ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="about-block">
+                                <h2>About</h2>
+                                <div class=" row ">
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " class="form-control " id="aboutTitre " name="aboutTitre " placeholder="About Titre " formControlName="aboutTitre" required data-error="Please enter your title ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Age " id="age " class="form-control " formControlName="age" required data-error="Please enter your age ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Experience " id="experience " class="form-control " formControlName="experience" required data-error="Please enter experience ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Pays " id="pays " class="form-control " formControlName="pays" required data-error="Please enter pays ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Ville " id="ville " class="form-control " formControlName="ville" required data-error="Please enter the ville ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Email " id="email " class="form-control " formControlName="email" required data-error="Please enter the email ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Tel " id="tel " class="form-control " formControlName="tel" required data-error="Please enter the tel ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Freelance " id="freelance " class="form-control " formControlName="freelance" required data-error="Please enter the freelance ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="aboutDesc" placeholder="Your Description" rows="5" formControlName="aboutDesc" data-error="Write your message" required></textarea>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="about-block">
+                                <h2>Skills</h2>
+                                <div class=" row ">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Titre " id="skillsTitre " class="form-control " formControlName="skillsTitre" required data-error="Please enter the title ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 ">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="skillsDesc" placeholder="Your Description" rows="5" formControlName="skillsDesc" data-error="Write your message" required></textarea>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="about-block">
+                                <h2>Resume</h2>
+                                <div class=" row ">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Ecole " id="ecole " class="form-control " name="ecole " formControlName="ecole" required data-error="Please enter your first name ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " class="form-control " id="dateDebut " name="dateDebut " placeholder="DateDebut " formControlName="dateDebut" required data-error="Please enter your last name ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 ">
+                                        <div class="form-group ">
+                                            <input type="text " class="form-control " id="dateFin " name="dateFin " placeholder="DateFin " formControlName="dateFin" required data-error="Please enter your last name ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <div class="form-group ">
+                                            <input type="text " placeholder="Titre " id="expTitre " class="form-control " formControlName="expTitre" required data-error="Please enter the title ">
+                                            <div class="help-block with-errors "></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="submit-button ">
+                            <button class="btn btn-common " id="submit " type="submit " [disabled]="curriculumForm.invalid ">Create</button>
+                            <div id="msgSubmit " class="h3 text-center hidden "></div>
+                            <div class="clearfix "></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgwWowModule } from 'ngx-wow';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -15,13 +16,14 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CurriculumFormComponent } from './curriculum-form/curriculum-form.component';
 
 const appRoutes: Routes = [
   { path: 'home',       component: HeaderComponent },
   { path: 'about',      component: AboutComponent },
   { path: 'services',   component: SkillsComponent },
   { path: 'resume',     component: ResumeComponent },
-  { path: 'work',       component: PortfolioComponent },
+  { path: 'new',       component: CurriculumFormComponent },
   { path: 'contact',    component: ContactComponent },
   { path: '',
     redirectTo: '/home',
@@ -42,12 +44,15 @@ const appRoutes: Routes = [
     ContactComponent,
     FooterComponent,
     PageNotFoundComponent,
-    NavigationComponent
+    NavigationComponent,
+    CurriculumFormComponent
   ],
   imports: [
     AngularFontAwesomeModule,
     NgwWowModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
