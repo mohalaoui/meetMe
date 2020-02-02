@@ -7,7 +7,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AboutComponent } from './about/about.component';
-import { ServicesComponent } from './services/services.component';
+import { SkillsComponent } from './skills/skills.component';
 import { ResumeComponent } from './resume/resume.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -19,7 +19,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 const appRoutes: Routes = [
   { path: 'home',       component: HeaderComponent },
   { path: 'about',      component: AboutComponent },
-  { path: 'services',   component: ServicesComponent },
+  { path: 'services',   component: SkillsComponent },
   { path: 'resume',     component: ResumeComponent },
   { path: 'work',       component: PortfolioComponent },
   { path: 'contact',    component: ContactComponent },
@@ -35,7 +35,7 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     AboutComponent,
-    ServicesComponent,
+    SkillsComponent,
     ResumeComponent,
     PortfolioComponent,
     StatisticsComponent,
