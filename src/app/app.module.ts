@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CurriculumFormComponent } from './curriculum-form/curriculum-form.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 const appRoutes: Routes = [
   { path: 'home',       component: HeaderComponent },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'resume',     component: ResumeComponent },
   { path: 'new',       component: CurriculumFormComponent },
   { path: 'contact',    component: ContactComponent },
+  { path: 'connexion',    component: ConnexionComponent },
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     FooterComponent,
     PageNotFoundComponent,
     NavigationComponent,
-    CurriculumFormComponent
+    CurriculumFormComponent,
+    ConnexionComponent
   ],
   imports: [
     NgwWowModule,
