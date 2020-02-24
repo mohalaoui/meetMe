@@ -17,7 +17,7 @@ export class CurriculumFormComponent implements OnInit {
 
   curriculumForm: FormGroup;
   resumeForm: FormGroup;
-  resumeExperience: Experience[] = [];
+  //resumeExperience: Experience[] = [];
   curriculum : Curriculum;
 
   constructor(private formBuilder: FormBuilder, private curriculumService: CurriculumService,
@@ -48,17 +48,18 @@ export class CurriculumFormComponent implements OnInit {
         this.curriculumForm.get('freelance').setValue(this.curriculum.infoPerso.freelance);
         this.curriculumForm.get('experience').setValue(this.curriculum.infoPerso.experience);
 
-        Array.prototype.push.apply(this.resumeExperience, this.curriculum.infoPerso.resumes);
-        this.curriculum.infoPerso.resumes.forEach(
-          (experience:Experience) =>{
+        //Array.prototype.push.apply(this.resumeExperience, this.curriculum.infoPerso.resumes);
+        
+        // this.curriculum.infoPerso.resumes.forEach(
+        //   (experience:Experience) =>{
 
-            this.resumeForm.get('resumeType').setValue;
-            this.resumeForm.get('resumeTitre').setValue;
-            this.resumeForm.get('dateDebut').setValue;
-            this.resumeForm.get('dateFin').setValue;
-            this.resumeForm.get('resumeDesc').setValue;
-          }
-        )
+        //     this.resumeForm.get('resumeType').setValue;
+        //     this.resumeForm.get('resumeTitre').setValue;
+        //     this.resumeForm.get('dateDebut').setValue;
+        //     this.resumeForm.get('dateFin').setValue;
+        //     this.resumeForm.get('resumeDesc').setValue;
+        //   }
+        // )
       },
       (error) =>{
         console.log(error);
@@ -104,15 +105,15 @@ export class CurriculumFormComponent implements OnInit {
     const freelance = this.curriculumForm.get('freelance').value;
     const infoPersoExp = this.curriculumForm.get('experience').value;
 
-    let experience: Experience[] = [];
-    if(this.resumeExperience.length > 0){
-      experience.push(...this.resumeExperience)
+    let resume: Experience[] = [];
+    if(this.curriculum.infoPerso.resumes.length > 0){
+      resume.push(...this.curriculum.infoPerso.resumes)
     }
     else{
-      experience = null;
+      resume = null;
     }
 
-    const newInfoPerso = new InfoPerso(infoPersoTitre, infoPersoDesc, nom, prenom, infoPersoExp, age, pays, ville, email, tel, freelance, experience);
+    const newInfoPerso = new InfoPerso(infoPersoTitre, infoPersoDesc, nom, prenom, infoPersoExp, age, pays, ville, email, tel, freelance, resume);
     const newCurriculum = new Curriculum(newInfoPerso);
     this.curriculumService.getOneCurriculum("0").then(
       (response) =>{
@@ -134,21 +135,23 @@ export class CurriculumFormComponent implements OnInit {
     const dateFin = this.resumeForm.get('dateFin').value;
     const resumeDesc = this.resumeForm.get('resumeDesc').value;
 
-    //bug this.resumeId++
     const newExperience = new Experience(uuidv4(), resumeType, resumeTitre, dateDebut, dateFin, resumeDesc);
-
-    this.resumeExperience.push(newExperience);
+    
+    if(this.curriculum.infoPerso.resumes == null){
+      this.curriculum.infoPerso.resumes = []
+    }
+    this.curriculum.infoPerso.resumes.push(newExperience);
   }
 
   onResumeDelete(id:number){
-    const resumeIndexToRemove = this.resumeExperience.findIndex(
+    const resumeIndexToRemove = this.curriculum.infoPerso.resumes.findIndex(
       (experience) => {
         if(experience.id === id) {
           return true;
         }
       }
     );
-    this.resumeExperience.splice(resumeIndexToRemove, 1);
+    this.curriculum.infoPerso.resumes.splice(resumeIndexToRemove, 1);
     
   }
 }
