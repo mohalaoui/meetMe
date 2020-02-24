@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="profile-wrapper wow fadeInRight" data-wow-delay="0.3s" *ngFor="let curriculum of curriculums; let i = index">
+                <div class="profile-wrapper wow fadeInRight" data-wow-delay="0.3s" *ngIf="curriculum">
                     <h3>{{curriculum.infoPerso.titre }}</h3>
                     <p>{{curriculum.infoPerso.desc }}</p>
                     <div class="about-profile">

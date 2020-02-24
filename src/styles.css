@@ -44,7 +44,13 @@
 }
 
 
-/* animate */
+/* form */
+
+.experience-box {
+    padding: 4px;
+    border: 1px solid #e1e1e1;
+    margin: 9px 0px 9px 0px;
+}
 
 
 /* main */
@@ -238,7 +244,10 @@ button:focus {
     outline: none !important;
 }
 
-.icon-close,
+.icon-close {
+    color: #bd2130;
+}
+
 .icon-check {
     color: #00b4d9;
 }

@@ -11,6 +11,7 @@ import { CurriculumService } from '../services/curriculum.service';
 export class AboutComponent implements OnInit {
   
   curriculums : Curriculum[];
+  curriculum : Curriculum = null;
   curriculumsSubscription: Subscription;
 
   constructor(private curriculumService : CurriculumService) { }
@@ -22,6 +23,15 @@ export class AboutComponent implements OnInit {
       }
     );
     this.curriculumService.emitCurriculum();
+    
+    this.curriculumService.getOneCurriculum("0").then(
+      (data: Curriculum) =>{
+        this.curriculum = data;
+      },
+      (error) =>{
+        console.log(error);
+      }
+      )
   }
   
   onDownloadResume(){

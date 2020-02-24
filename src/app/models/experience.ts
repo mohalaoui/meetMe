@@ -1,10 +1,11 @@
 export class Experience {
     constructor(
-                public entreprise:string, 
-                public lieu:string, 
-                public dateDebut:Date, 
-                public dateFin:Date,
-                public desc:string
+                public id:number,
+                public resumeType:string,
+                public resumeTitre:string, 
+                public dateDebut:string, 
+                public dateFin:string,
+                public resumeDesc:string
                 ) {
     }
   }

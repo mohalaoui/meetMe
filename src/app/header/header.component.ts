@@ -13,6 +13,7 @@ import { TargetLocator } from 'selenium-webdriver';
 export class HeaderComponent implements OnInit {
   
   curriculums : Curriculum[];
+  curriculum : Curriculum;
   curriculumsSubscription: Subscription;
 
   constructor(private curriculumService : CurriculumService, private router : Router) { }
@@ -24,6 +25,15 @@ export class HeaderComponent implements OnInit {
       }
     );
     this.curriculumService.emitCurriculum();
+
+    this.curriculumService.getOneCurriculum("0").then(
+      (data: Curriculum) =>{
+        this.curriculum = data;
+      },
+      (error) =>{
+        console.log(error);
+      }
+      )
   }
   
   onNewCurriculum(){

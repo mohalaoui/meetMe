@@ -1,3 +1,5 @@
+import { Experience } from './experience';
+
 export class InfoPerso {
     constructor( 
                 public titre:string, 
@@ -10,7 +12,8 @@ export class InfoPerso {
                 public ville: string,
                 public email: string,
                 public tel: string,
-                public freelance: boolean
+                public freelance: boolean,
+                public resumes: Experience[]
 
                 ) {
     }

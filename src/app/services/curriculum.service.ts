@@ -24,6 +24,10 @@ export class CurriculumService {
     firebase.database().ref('/curriculum').set(this.curriculums);
   }
 
+  updateCurriculum(id:string, curriculum:Curriculum){
+    firebase.database().ref('/curriculum/' + id).update(curriculum);
+  }
+
   getAllCurriculums(){
     firebase.database().ref('/curriculum').on(
       'value' , (data:firebase.database.DataSnapshot) => {
