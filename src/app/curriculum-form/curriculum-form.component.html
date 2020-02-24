@@ -134,34 +134,37 @@
                                                 <div class="help-block with-errors "></div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 ">
-                                    <div class="submit-button ">
-                                        <button class="btn btn-secondary float-right " id="resumeSubmit " type="submit " [disabled]="resumeForm.invalid ">add</button>
-                                        <div id="msgSubmit " class="h3 text-center hidden "></div>
-                                        <div class="clearfix "></div>
+                                        <div class="col-md-12 ">
+                                            <div class="submit-button ">
+                                                <button class="btn btn-secondary float-right " id="resumeSubmit " type="submit " [disabled]="resumeForm.invalid ">add</button>
+                                                <div id="msgSubmit " class="h3 text-center hidden "></div>
+                                                <div class="clearfix "></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 " *ngFor="let experience of curriculum.infoPerso.resumes">
+                                            <div class="footer-right-area wow fadeIn">
+                                                <div class="experience-box">
+                                                    <div class="icon float-right" (click)="onResumeDelete(experience.id)">
+                                                        <i class="icon-close"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h5>{{experience.resumeTitre}}</h5>
+                                                    </div>
+                                                    <div>
+                                                        <p>{{experience.resumeType}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p>{{experience.dateDebut}} - {{experience.dateFin}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p>{{experience.resumeDesc}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
-                            <div class="col-md-12 " *ngFor="let experience of curriculum.infoPerso.resumes">
-                                <div class="footer-right-area wow fadeIn">
-                                    <div class="experience-box">
-                                        <div class="icon float-right" (click)="onResumeDelete(experience.id)">
-                                            <i class="icon-close"></i>
-                                        </div>
-                                        <div>
-                                            <h5>{{experience.resumeTitre}}</h5>
-                                        </div>
-                                        <div>
-                                            <p>{{experience.dateDebut}} - {{experience.dateFin}}</p>
-                                        </div>
-                                        <div>
-                                            <p>{{experience.resumeDesc}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-md-12 ">
                             <div class="submit-button ">
