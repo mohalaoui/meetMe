@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
+## Fonctionnality
+
+demo for Resume with angular and firebase back end
+
 # Template
 
 Template origine : https://onepagelove.com/meetme-lite
