@@ -6,9 +6,43 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 demo for Resume with angular and firebase back end
 
-# Template
+## Template
 
 Template origine : https://onepagelove.com/meetme-lite
+
+## Security
+"keycloak-angular": "^7.3.1", "keycloak-js": "^10.0.2"
+- keycloak is used for managing the security of the app 
+- keycloak-angular is used for integration 
+- all the page of the site in this demo are public, only update CV page is protected and user must have admin role.
+
+<pre><code>
+{
+    path: 'update',
+    component: CurriculumFormComponent,
+    canActivate: [authService],
+    data: { roles: ['admin'] }
+}
+</code>
+</pre>
+
+### keycloak-angular configuration
+
+<pre><code>
+// Add here your keycloak setup infos
+const keycloakConfig: KeycloakConfig = {
+  url: 'http://192.168.5.5:8080/auth',
+  realm: 'springDemo',
+  clientId: 'meetme-app'
+};
+
+
+
+export const environment = {
+  production: false,
+  keycloakConfig
+};
+</code></pre>
 
 ## Development server
 

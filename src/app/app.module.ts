@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { NgwWowModule } from 'ngx-wow';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
@@ -17,28 +16,10 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CurriculumFormComponent } from './curriculum-form/curriculum-form.component';
-import { AuthguardserviceService as authService } from './services/authguardservice.service';
 import { initializer } from './utils/app-init';
+import { RoutingModule } from './routing.module';
+import { CurriculumService } from './services/curriculum.service';
 
-const appRoutes: Routes = [
-  { path: 'home', component: HeaderComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'services', component: SkillsComponent },
-  { path: 'resume', component: ResumeComponent },
-  { path: 'contact', component: ContactComponent },
-  {
-    path: 'update',
-    component: CurriculumFormComponent,
-    canActivate: [authService],
-    data: { roles: ['admin'] }
-  },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
-];
 
 @NgModule({
   declarations: [
@@ -61,12 +42,10 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     KeycloakAngularModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
-    )
+    RoutingModule
   ],
-  providers: [authService,
+  providers: [
+    CurriculumService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializer,
