@@ -32,7 +32,6 @@ pipeline {
 		}
 		
 		stage('Build & Check Quality'){
-			when { expression { !params.SKIP_BUILD} }
 			steps{
 				script{
 					echo "Building..."
@@ -45,17 +44,29 @@ pipeline {
 		}
 
 		stage('Package Build') {
-        	sh "tar -zcvf bundle.tar.gz dist/meetMe/"
+			steps{
+				script{
+					sh "tar -zcvf bundle.tar.gz dist/meetMe/"
+				}
+			}
     	}
 
 		stage('Artifacts Creation') {
-			fingerprint 'bundle.tar.gz'
-			archiveArtifacts 'bundle.tar.gz'
-			echo "Artifacts created"
+			steps{
+				script{
+					fingerprint 'bundle.tar.gz'
+					archiveArtifacts 'bundle.tar.gz'
+					echo "Artifacts created"
+				}
+			}
 		}
 
 		stage('Stash changes') {
-			stash allowEmpty: true, includes: 'bundle.tar.gz', name: 'buildArtifacts'
+			steps{
+				script{
+					stash allowEmpty: true, includes: 'bundle.tar.gz', name: 'buildArtifacts'
+				}
+			}
 		}
 
 		stage('deploy app') {
@@ -63,13 +74,15 @@ pipeline {
 				label '${params.SERVEUR}'
 			}
 			steps{
-				echo 'Unstash'
-				unstash 'buildArtifacts'
-				echo 'Artifacts copied'
+				script{
+					echo 'Unstash'
+					unstash 'buildArtifacts'
+					echo 'Artifacts copied'
 
-				echo 'Copy'
-				sh "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
-				echo 'Copy completed'
+					echo 'Copy'
+					sh "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+					echo 'Copy completed'
+				}
 			}
 			
 		}
