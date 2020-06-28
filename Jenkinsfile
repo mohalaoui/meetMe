@@ -77,6 +77,9 @@ pipeline {
 			agent {
 				label "${params.SERVEUR}"
 			}
+			options {
+				skipDefaultCheckout()
+			}
 			steps{
 				script{
 					echo 'Unstash'
