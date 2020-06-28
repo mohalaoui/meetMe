@@ -38,6 +38,8 @@ pipeline {
 				script{
 					echo "Building..."
 					nodejs('nodejs') {
+						sh 'npm run clean'
+						sh 'rm -rf node_modules'
                     	sh 'npm install'
 						sh 'npm run build'
                 	}	
