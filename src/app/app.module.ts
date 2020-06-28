@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgwWowModule } from 'ngx-wow';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -16,21 +17,27 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CurriculumFormComponent } from './curriculum-form/curriculum-form.component';
-import { ConnexionComponent } from './connexion/connexion.component';
+import { AuthguardserviceService as authService } from './services/authguardservice.service';
+import { initializer } from './utils/app-init';
 
 const appRoutes: Routes = [
-  { path: 'home',       component: HeaderComponent },
-  { path: 'about',      component: AboutComponent },
-  { path: 'services',   component: SkillsComponent },
-  { path: 'resume',     component: ResumeComponent },
-  { path: 'new',       component: CurriculumFormComponent },
-  { path: 'contact',    component: ContactComponent },
-  { path: 'connexion',    component: ConnexionComponent },
-  { path: '',
+  { path: 'home', component: HeaderComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'services', component: SkillsComponent },
+  { path: 'resume', component: ResumeComponent },
+  { path: 'contact', component: ContactComponent },
+  {
+    path: 'update',
+    component: CurriculumFormComponent,
+    canActivate: [authService],
+    data: { roles: ['admin'] }
+  },
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
-  { path: '**',         component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -46,20 +53,27 @@ const appRoutes: Routes = [
     FooterComponent,
     PageNotFoundComponent,
     NavigationComponent,
-    CurriculumFormComponent,
-    ConnexionComponent
+    CurriculumFormComponent
   ],
   imports: [
     NgwWowModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    KeycloakAngularModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [authService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

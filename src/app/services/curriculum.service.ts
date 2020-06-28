@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Curriculum } from '../models/curriculum';
 import { Subject } from 'rxjs';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -9,10 +9,10 @@ import * as firebase from 'firebase'
 })
 export class CurriculumService {
 
-  curriculums : Curriculum[] = [];
+  curriculums: Curriculum[] = [];
   curriculumsSubject = new Subject<Curriculum[]>();
 
-  constructor() { 
+  constructor() {
     this.getAllCurriculums();
   }
 
@@ -20,30 +20,31 @@ export class CurriculumService {
     this.curriculumsSubject.next(this.curriculums);
   }
 
-  saveCurriculum(){
+  saveCurriculum() {
     firebase.database().ref('/curriculum').set(this.curriculums);
   }
 
-  updateCurriculum(id:string, curriculum:Curriculum){
+  updateCurriculum(id: string, curriculum: Curriculum) {
     firebase.database().ref('/curriculum/' + id).update(curriculum);
   }
 
-  getAllCurriculums(){
+  getAllCurriculums() {
     firebase.database().ref('/curriculum').on(
-      'value' , (data:firebase.database.DataSnapshot) => {
-          this.curriculums = data.val() ? data.val() : [];
-          this.emitCurriculum();
+      'value', (data: firebase.database.DataSnapshot) => {
+        this.curriculums = data.val() ? data.val() : [];
+        this.emitCurriculum();
       }
-    )
+    );
   }
 
-  getOneCurriculum(id:string){
-    return new Promise(
+  getOneCurriculum(id: string) {
+    return new Promise<Curriculum>(
       (resolve, reject) => {
         firebase.database().ref('/curriculum/' + id).once('value').then(
-          (data:firebase.database.DataSnapshot) =>{
-            resolve(data.val())
-          }, (error) =>{
+          (data: firebase.database.DataSnapshot) => {
+            resolve(data.val());
+          },
+          (error) => {
             reject(error);
           }
         );
@@ -51,7 +52,7 @@ export class CurriculumService {
     );
   }
 
-  createCurriculum(newCurriculum: Curriculum){
+  createCurriculum(newCurriculum: Curriculum) {
     this.curriculums.push(newCurriculum);
     this.saveCurriculum();
     this.emitCurriculum();
@@ -60,7 +61,7 @@ export class CurriculumService {
   removeCurriculum(curriculum: Curriculum) {
     const curriculumIndexToRemove = this.curriculums.findIndex(
       (curriculumEl) => {
-        if(curriculumEl === curriculum) {
+        if (curriculumEl === curriculum) {
           return true;
         }
       }
