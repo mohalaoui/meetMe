@@ -14,10 +14,6 @@ pipeline {
         timeout(time: 2, unit: 'HOURS')
     }
     
-    triggers {
-        cron('H 19 * * 1-5')
-    }
-    
     stages {
     	stage('Environment Setup'){
 			steps{
