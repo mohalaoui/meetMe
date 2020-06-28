@@ -98,7 +98,7 @@ pipeline {
 						  ]
 						]
 						
-						slackSend(channel: '#jenkins', attachments: attachments)
+					slackSend(channel: '#jenkins', attachments: attachments)
 				}
 			}
 			
