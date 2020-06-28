@@ -89,6 +89,16 @@ pipeline {
 					echo 'Copy'
 					sh "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
 					echo 'Copy completed'
+
+					def attachments = [
+						  [
+						    text: "${env.PROJECT_NAME} deployememt succeed.",
+						    fallback: "The pipeline ${env.PROJECT_NAME} SUCCESS.",
+						    color: '#09d917'
+						  ]
+						]
+						
+						slackSend(channel: '#jenkins', attachments: attachments)
 				}
 			}
 			
