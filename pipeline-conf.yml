@@ -1,0 +1,13 @@
+envVars:
+  MVN_PROJECTS_NAME_PREFIX: 'meetme'
+  PROJECT_NAME: 'meetme'
+  APP_ARTIFACT_IDS: 
+    - 'meetme-provider' 
+  OPS_MVN_MODULE_PATH: 'meetme-ops'
+  TESTS_MODULE_PATH: 'meetme-acceptance'
+  QA_TESTS_MODULE_PATH: 'meetme-testing'
+  PROJECT_TRG: 'MEETME'
+  JIRA_COMPONENT_NAME: 'MEETME'
+  BUILD_MAIL_RECIPENTS: 'al.med@live.fr'
+  RELEASE_MAIL_RECIPENTS: 'al.med@live.fr'
+  

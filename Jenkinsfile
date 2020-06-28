@@ -1,0 +1,96 @@
+@Library('jenkins-pipeline-library') _
+
+pipeline {
+	agent any
+
+    parameters {
+        choice       name: 'SERVEUR' , description: 'Environment to deploy', choices: 'devnode\n'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+        timeout(time: 2, unit: 'HOURS')
+    }
+    
+    triggers {
+        cron('H 19 * * 1-5')
+    }
+    
+    stages {
+    	stage('Environment Setup'){
+			steps{
+				script{
+					echo "Loading Environment variables from file pipeline-conf.yml ..."
+					pipelineConf = readYaml file: "pipeline-conf.yml"
+					for(envVar in pipelineConf.envVars) {
+						env.setProperty(envVar.key, envVar.value)
+					}
+
+					sh 'env'
+				}
+			}
+		}
+		
+		stage('Build & Check Quality'){
+			when { expression { !params.SKIP_BUILD} }
+			steps{
+				script{
+					echo "Building..."
+					nodejs('nodejs') {
+                    	sh 'npm install'
+						sh 'npm run build'
+                	}	
+				}
+			}
+		}
+
+		stage('Package Build') {
+        	sh "tar -zcvf bundle.tar.gz dist/meetMe/"
+    	}
+
+		stage('Artifacts Creation') {
+			fingerprint 'bundle.tar.gz'
+			archiveArtifacts 'bundle.tar.gz'
+			echo "Artifacts created"
+		}
+
+		stage('Stash changes') {
+			stash allowEmpty: true, includes: 'bundle.tar.gz', name: 'buildArtifacts'
+		}
+
+		stage('deploy app') {
+			agent {
+				label '${params.SERVEUR}'
+			}
+			steps{
+				echo 'Unstash'
+				unstash 'buildArtifacts'
+				echo 'Artifacts copied'
+
+				echo 'Copy'
+				sh "yes | sudo cp -R bundle.tar.gz /var/www/html && cd /var/www/html && sudo tar -xvf bundle.tar.gz"
+				echo 'Copy completed'
+			    }
+			}
+		}
+		
+    }
+    
+	post {
+	    failure {
+	    	script{
+		    	def attachments = [
+				  [
+				    text: "Failed Pipeline: ${env.PROJECT_NAME}",
+				    fallback: "The pipeline ${env.PROJECT_NAME} failed.",
+				    color: '#ff0000'
+				  ]
+				]
+				
+				slackSend(channel: '#jenkins', attachments: attachments)
+	    	}
+
+	    }
+	}
+
+}
