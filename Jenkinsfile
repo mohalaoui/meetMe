@@ -1,7 +1,9 @@
 @Library('jenkins-pipeline-library') _
 
 pipeline {
-	agent any
+	agent {
+		label 'master'
+	}
 
     parameters {
         choice       name: 'SERVEUR' , description: 'Environment to deploy', choices: 'devnode\n'
