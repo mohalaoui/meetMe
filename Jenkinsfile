@@ -75,7 +75,7 @@ pipeline {
 
 		stage('deploy app') {
 			agent {
-				label '${params.SERVEUR}'
+				label "${params.SERVEUR}"
 			}
 			steps{
 				script{
