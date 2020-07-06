@@ -538,7 +538,7 @@ a.back-to-top:focus {
     background: #fff;
     z-index: 999999;
     top: 0px !important;
-    min-height: 58px;
+    min-height: 49px;
     box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -725,6 +725,10 @@ a.back-to-top:focus {
     background: #00b4d9;
 }
 
+.slicknav_menu {
+    width: 100%;
+}
+
 
 /* only small tablets */
 
@@ -746,7 +750,11 @@ a.back-to-top:focus {
     display: none;
 }
 
-@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+
+@media screen and (max-width: 991px) {
     .navbar-header {
         width: 100%;
     }
